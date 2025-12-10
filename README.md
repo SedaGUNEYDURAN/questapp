@@ -28,8 +28,9 @@
     - **@GetMapping**: Controller classının içindeki bir metodun client tarafından bir adrese(URL) veri isteme talebi gönderdiğinde çalışması gerektiğini Spring'e bildirir.    
     - **@PostMapping**: Spring'e bu metodun belirli bir URL'e yapılan HTTP POST isteğine yanıt vermesi gerektiğini söyler. Bir Controller metodunun istemciden gelen verileri kabul edip yeni bir kaynak(resource) oluişturmak için kullanılan HTTP POST isteklerini işleyeceğini belirtir.    
     
-     • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**      
-
+     • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
+    
+- **@JoinColumn**:JPA ve Hibernate gibi ORM araçlarını kullanırken veritabanı ilişkilerini(manytomany,onetoone...) yönetmek için kullanılan bir anotasyondur.İki entity arasındaki ilişkinin hangi column üzerinden kurulacağını söyler.    
 
   ## JPA
  - JpaRepository extend edildiğinde, Spring bizim için hazır CRUD metotlarını sağlar. Yani kendi save(), findByID(), delete() gibi metotları yazmamıza gerek kalmaz.
@@ -54,7 +55,8 @@
   User; entity sınıfıdır, tabloya karşılık gelen class  
   Long olarak belirtilen id tipiir. Entity'in primary key'idir.      
   Spring Boot uygulaması açıldığında, @Repository anotasyonu gerekmeden Spring bu interface'i otomatik olarak bean olarak tanır. Burada olduğu gibi biz sadece interface tanımlıyoruz. Spring Boot arkada SQL sorgularını ve implementasyonlarını otomatik oluşturuyor.    
-
+ 
+ - 
 
   ## React
 -  Node.js kurulumunu yaptıktan sonra Visual Studio Code terminalinde 
@@ -64,8 +66,8 @@ npx create-react-app projectName
  ```
    diyoruz ve projemiz oluşturuluyor. cd projectName diyoruz ve proje dizinimize geçiyoruz. 
    
-    ```java
-    npm start
-     ```
+```java
+npm start
+```
      
-     dediğimizde de proje ayağa kalkar. 
+dediğimizde de proje ayağa kalkar. 
