@@ -23,7 +23,12 @@
   **Bu anotasyon tüm getter/setterları eklediği için immutable(değişmez) classlar için uygun değildir.**   
 
 - **@Lob**: (Large Object) JPA anotasyonudur. Bir entity classındaki alanın büyük boyutlu veri olarak saklanacağını belirtir. Veritabanında bu alan CLOB(Character Large Object) veya BLOB(Binary Large Object) tipine karşılık gelir.
-
+- **```RestController```**:bir classın Restful web servislerini (API) sunacak bir bileşen olduğunu belirtir.Yani o classı, HTTP isteklerini karşılayan bir API katmanı haline getiriyoruz. İki temel spring annotationın birleşimidir.   
+     • **@Controller**: Spring'e bu sınıfın gelen http isteklerini işlemekten sorumlu bir bileşen olduğunu söyler. Bu classların içindewki metotlarda @GetMapping, @PostMapping gibi annotationlar ile birlikte URL'lere eşlenir.        
+    - **@GetMapping**: Controller classının içindeki bir metodun client tarafından bir adrese(URL) veri isteme talebi gönderdiğinde çalışması gerektiğini Spring'e bildirir.    
+    - **@PostMapping**: Spring'e bu metodun belirli bir URL'e yapılan HTTP POST isteğine yanıt vermesi gerektiğini söyler. Bir Controller metodunun istemciden gelen verileri kabul edip yeni bir kaynak(resource) oluişturmak için kullanılan HTTP POST isteklerini işleyeceğini belirtir.    
+    
+     • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**      
 
 
   ## JPA
