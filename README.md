@@ -67,4 +67,5 @@ npx create-react-app projectName
     ```java
     npm start
      ```
+     
      dediğimizde de proje ayağa kalkar. 
