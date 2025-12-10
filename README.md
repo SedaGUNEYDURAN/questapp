@@ -54,3 +54,17 @@
   User; entity sınıfıdır, tabloya karşılık gelen class  
   Long olarak belirtilen id tipiir. Entity'in primary key'idir.      
   Spring Boot uygulaması açıldığında, @Repository anotasyonu gerekmeden Spring bu interface'i otomatik olarak bean olarak tanır. Burada olduğu gibi biz sadece interface tanımlıyoruz. Spring Boot arkada SQL sorgularını ve implementasyonlarını otomatik oluşturuyor.    
+
+
+  ## React
+-  Node.js kurulumunu yaptıktan sonra Visual Studio Code terminalinde 
+
+ ```java
+npx create-react-app projectName
+ ```
+   diyoruz ve projemiz oluşturuluyor. cd projectName diyoruz ve proje dizinimize geçiyoruz. 
+   
+    ```java
+    npm start
+     ```
+     dediğimizde de proje ayağa kalkar. 
