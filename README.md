@@ -29,6 +29,8 @@
     - **@PostMapping**: Spring'e bu metodun belirli bir URL'e yapılan HTTP POST isteğine yanıt vermesi gerektiğini söyler. Bir Controller metodunun istemciden gelen verileri kabul edip yeni bir kaynak(resource) oluişturmak için kullanılan HTTP POST isteklerini işleyeceğini belirtir.    
     
      • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
+
+-  **@RequestMapping**: Bir Controller classını veya bir Controller metodunu belirli bir URL'e eşlemektedir.    
     
 - **@ManyToOne**: İki entity arasındaki ilişkinin many to one olduğunu belirtir. Parametre olacak  fetch=FetchType.LAZY alabi,lir. Peki bu ne demektir? JPA/Hibernate'e bu ilişkinin verileri ne zaman veritabanından alınacağını söyler. Lazy, tembel yüklemedir yani bir entityi yüklediğimizde onunla ilişkili entitynin hemen yüklenmeyeceğini ifade eder. Bu EAGER olsaydı -ki eğer LAZY diye belirtmezsek JPA defaultu EAGER'dır- ana entity yüklenir yüklenmez ilişkili entity aynı anda ya da JOIN bir sorguyla otomatik olarak yüklenir. Lazy yükjleme başlangıç performansını arttırsa da, eğer listedeki her bir ögenin ilişkili verisine döngü içinde erişirsek n+1 sorgu sorununa yol açar. Bier tane ana sorgumuz var ve diyelim ki ilişkili de 100 tane veri var. Her 100 öge için bir sorgu atacağımız için toplamda 101 sorgu olur. Ama bununda JOIN FETCH ile önüüne geçebiliyoruz.     
 - **@JoinColumn**:JPA ve Hibernate gibi ORM araçlarını kullanırken veritabanı ilişkilerini(manytomany,onetoone...) yönetmek için kullanılan bir anotasyondur.İki entity arasındaki ilişkinin hangi column üzerinden kurulacağını söyler. **unique** olarak belirtilmişse    bu sütunun değerleri unique'dir. Özellikle @OneToOne ilişkilerde zorunludur veya true yapılmalıdır. **nullable** ise foreign key sütununun veritabanında null değer alıp almayacağını belirler, default değeri true'dur.    
@@ -37,6 +39,7 @@
   •  **@OnDelete(action=OnDeleteAction.CASCADE)**, veritabanı seviyesinde silmedir. Hibernate veritabanına tek  bir komut gönderir; yazarı sil. Veritabanı kendi içinde constraintlere bakarak kitapları kendisi temizler. Çok daha hızlıdır.
 
 - **@JsonIgnore**: Bu alanı JSON çıktısına dahil etme yani serileştirme ve JSON girdisinden bu alanı okumaya çalışma yani deserilialization yapma.
+- **@Service**: bir classı, business logic service olarak işaretlemek için kullanılan özelleştirilmiş @Component anotasyonudur. Bu anotasyon sayesinde, Spring'in IoC Container'ı bu sınıfı otomatik olarak bulur, bean olarak oluşturur ve uygulamanın yaşam döngüsü boyunca yönetir. Bu anotasyon ile işaretlenmiş olan class Controller katmanı ile Repository(Veri erişim) katmanı arasında köprü görevi görür.    
 
    
   ## JPA
