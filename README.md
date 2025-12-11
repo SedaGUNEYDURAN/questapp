@@ -89,7 +89,7 @@
   	- userId gördüğünde by'dan sonra bunu şu şekilde birleştirir; WHERE  Comment.userId=?   
     - and gördüğünde ikinci bir koşulun eklendiğini anlar.   
     - postId gördüğünde  AND Comment.postId=? anlar.   
-Sonuçta üretilen sorgu ; SELECT * FROM COMMENT WHERE user_id = [long1'in değeri] AND post_id = [long2'nin değeri];    
+Sonuçta üretilen sorgu ; SELECT * FROM COMMENT WHERE user_id = [userId'in değeri] AND post_id = [postId'nin değeri];    
 Spring bu sorguyu çalıştırır ve sonuçlarını otomatik olarak bir List<Comment> objesine dönüştürecek dinamik bir sınıf yani proxy class oluşturur ve onu CommentRepository'nin yerine koyar. Controller veya Service katmanı sanki bu metodu yazmışız gibi çağırır, arka planda Spring'in oluşturduğu SQL komutu çalışır.    
 
   ## React
