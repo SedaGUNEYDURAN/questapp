@@ -83,7 +83,14 @@
   Long olarak belirtilen id tipiir. Entity'in primary key'idir.      
   Spring Boot uygulaması açıldığında, @Repository anotasyonu gerekmeden Spring bu interface'i otomatik olarak bean olarak tanır. Burada olduğu gibi biz sadece interface tanımlıyoruz. Spring Boot arkada SQL sorgularını ve implementasyonlarını otomatik oluşturuyor.    
  
- - 
+ - JPA'in en güçlü yanlarından biri de dinamin sorgu yaratmadır(Dynamic Query Generation). Biz metodu tanımlıyoruz ve Spring Data JPA bizim yerimize arkaplanda SQL komutunu üretiyor. Spring Data JPA, Repository(buradaki interfacelerimizin adı) interfaceindeki metot isimlerini okur ve bu isimleri bir dil gibi yorumlar ve buna göre sorguı oluşturur. Diyelim ki metodumuz ;List<Comment> findByUserIdAndPostId(Long long1, Long long2);    
+ 	- find ve get gördüğünde SELECT ile bir sorgu başlatacağını anlar.   
+ 	- By gördüğünde sorgunun WHERE koşulunun başladığı yer olarak anlar.   
+  	- userId gördüğünde by'dan sonra bunu şu şekilde birleştirir; WHERE  Comment.userId=?   
+    - and gördüğünde ikinci bir koşulun eklendiğini anlar.   
+    - postId gördüğünde  AND Comment.postId=? anlar.   
+Sonuçta üretilen sorgu ; SELECT * FROM COMMENT WHERE user_id = [long1'in değeri] AND post_id = [long2'nin değeri];    
+Spring bu sorguyu çalıştırır ve sonuçlarını otomatik olarak bir List<Comment> objesine dönüştürecek dinamik bir sınıf yani proxy class oluşturur ve onu CommentRepository'nin yerine koyar. Controller veya Service katmanı sanki bu metodu yazmışız gibi çağırır, arka planda Spring'in oluşturduğu SQL komutu çalışır.    
 
   ## React
 -  Node.js kurulumunu yaptıktan sonra Visual Studio Code terminalinde 
