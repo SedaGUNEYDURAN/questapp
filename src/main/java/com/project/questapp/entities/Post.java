@@ -26,11 +26,11 @@ public class Post {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id",nullable=false)
-	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OnDelete(action=OnDeleteAction.CASCADE)//user silindiğinde bütün postlar da silinsin
 	@JsonIgnore
 	User user;
 	
-	Long userId;
+	
 	String title;
 	@Lob
 	@Column(columnDefinition="text")

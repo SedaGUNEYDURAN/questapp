@@ -33,7 +33,8 @@
 		<dependency>
         	<groupId>com.mysql</groupId>
        		<artifactId>mysql-connector-j</artifactId>
-   	     	<scope>runtime</scope> </dependency>
+   	     	<scope>runtime</scope>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -80,8 +81,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>com.project.questapp.QuestappApplication</mainClass> 
-
-					</configuration>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

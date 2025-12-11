@@ -8,7 +8,6 @@ public class QuestappApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(QuestappApplication.class, args);
-		System.out.println("seda");
 	}
 
 }
