@@ -83,7 +83,7 @@
   Long olarak belirtilen id tipiir. Entity'in primary key'idir.      
   Spring Boot uygulaması açıldığında, @Repository anotasyonu gerekmeden Spring bu interface'i otomatik olarak bean olarak tanır. Burada olduğu gibi biz sadece interface tanımlıyoruz. Spring Boot arkada SQL sorgularını ve implementasyonlarını otomatik oluşturuyor.    
  
- - JPA'in en güçlü yanlarından biri de dinamin sorgu yaratmadır(Dynamic Query Generation). Biz metodu tanımlıyoruz ve Spring Data JPA bizim yerimize arkaplanda SQL komutunu üretiyor. Spring Data JPA, Repository(buradaki interfacelerimizin adı) interfaceindeki metot isimlerini okur ve bu isimleri bir dil gibi yorumlar ve buna göre sorguı oluşturur. Diyelim ki metodumuz ;List<Comment> findByUserIdAndPostId(Long long1, Long long2);    
+ - JPA'in en güçlü yanlarından biri de dinamin sorgu yaratmadır(Dynamic Query Generation). Biz metodu tanımlıyoruz ve Spring Data JPA bizim yerimize arkaplanda SQL komutunu üretiyor. Spring Data JPA, Repository(buradaki interfacelerimizin adı) interfaceindeki metot isimlerini okur ve bu isimleri bir dil gibi yorumlar ve buna göre sorguı oluşturur. Diyelim ki metodumuz ;List< Comment > findByUserIdAndPostId(Long userId, Long postId);    
  	- find ve get gördüğünde SELECT ile bir sorgu başlatacağını anlar.   
  	- By gördüğünde sorgunun WHERE koşulunun başladığı yer olarak anlar.   
   	- userId gördüğünde by'dan sonra bunu şu şekilde birleştirir; WHERE  Comment.userId=?   
