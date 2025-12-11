@@ -26,9 +26,26 @@
 - **```RestController```**:bir classın Restful web servislerini (API) sunacak bir bileşen olduğunu belirtir.Yani o classı, HTTP isteklerini karşılayan bir API katmanı haline getiriyoruz. İki temel spring annotationın birleşimidir.   
      • **@Controller**: Spring'e bu sınıfın gelen http isteklerini işlemekten sorumlu bir bileşen olduğunu söyler. Bu classların içindewki metotlarda @GetMapping, @PostMapping gibi annotationlar ile birlikte URL'lere eşlenir.        
     - **@GetMapping**: Controller classının içindeki bir metodun client tarafından bir adrese(URL) veri isteme talebi gönderdiğinde çalışması gerektiğini Spring'e bildirir.    
-    - **@PostMapping**: Spring'e bu metodun belirli bir URL'e yapılan HTTP POST isteğine yanıt vermesi gerektiğini söyler. Bir Controller metodunun istemciden gelen verileri kabul edip yeni bir kaynak(resource) oluişturmak için kullanılan HTTP POST isteklerini işleyeceğini belirtir.    
+    - **@PostMapping**: Spring'e bu metodun belirli bir URL'e yapılan HTTP POST isteğine yanıt vermesi gerektiğini söyler. Bir Controller metodunun istemciden gelen verileri kabul edip yeni bir kaynak(resource) oluişturmak için kullanılan HTTP POST isteklerini işleyeceğini belirtir.
+    - **@PutMapping**: Bir resourcedaki mevcut veriyi güncellemeyi amaçlayan HTTP isteklerini belirli bir controller metoduna yönlendirir.      
+ ```java
+@PutMapping("/{userId}") // PUT isteği /users/{userId} adresine eşlenir
+ ```
+
+   - **@DeleteMapping**: Belitilen adresteki kaynağı silmeyi amaçlayan HTTP isteklerini belirli bir Controller metoduna yönlendirir.
+   - **@RequestBody**: Controller metot parametresine konulan bir anotasyondur. Spring'e gelen HTTP isteğinin gövdesindeki veriyi Java nesnesine dönüştürür. Clienttan gelen JSON,XML... verisini otomatik olarak karşılık gelen Java classına map eder.
+   - **@PathVariable**: URL içerisinde yer alan değişken parçaları yakalamak ve bu değerleri metot parametrelerine aktarmak için kullanılır. URL içindeki {} içindeki dinamik değeri çeker.   
+
+ ```java
+  @GetMapping("/{userId}")
+  public User getOneUser(@PathVariable Long userId) { 
+		return userService.getOneUser(userId);
+	}
+```      
+
+   - **@RequestParam**: Bu anotasyon Controller classındaki metot parametresine konulduğunda Spring'e gelen URL'indeki sorgu dizesini okumasını söyler. Diyelim ki URL şöyle bir şey olsun; /posts?page=2&size=10&userId=5 .Burada URL'deki soru işaretinden sonra gelen kısım sorgu dizesidir -> page=2, size=10. Bu anotasyon, bu sorgu parametrelerinin değerlerini  yakalar. Yakalan  değeri, metot parametresine otomatik olarak atar. Yakalan String değeri , metot parametresinde bulunan türe otomatik olarak dönüştürür.   
     
-     • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
+     •**@ResponseBody** : @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
 
 -  **@RequestMapping**: Bir Controller classını veya bir Controller metodunu belirli bir URL'e eşlemektedir.    
     
