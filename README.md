@@ -30,8 +30,15 @@
     
      • **@ResponseBody**: @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
     
-- **@JoinColumn**:JPA ve Hibernate gibi ORM araçlarını kullanırken veritabanı ilişkilerini(manytomany,onetoone...) yönetmek için kullanılan bir anotasyondur.İki entity arasındaki ilişkinin hangi column üzerinden kurulacağını söyler.    
+- **@ManyToOne**: İki entity arasındaki ilişkinin many to one olduğunu belirtir. Parametre olacak  fetch=FetchType.LAZY alabi,lir. Peki bu ne demektir? JPA/Hibernate'e bu ilişkinin verileri ne zaman veritabanından alınacağını söyler. Lazy, tembel yüklemedir yani bir entityi yüklediğimizde onunla ilişkili entitynin hemen yüklenmeyeceğini ifade eder. Bu EAGER olsaydı -ki eğer LAZY diye belirtmezsek JPA defaultu EAGER'dır- ana entity yüklenir yüklenmez ilişkili entity aynı anda ya da JOIN bir sorguyla otomatik olarak yüklenir. Lazy yükjleme başlangıç performansını arttırsa da, eğer listedeki her bir ögenin ilişkili verisine döngü içinde erişirsek n+1 sorgu sorununa yol açar. Bier tane ana sorgumuz var ve diyelim ki ilişkili de 100 tane veri var. Her 100 öge için bir sorgu atacağımız için toplamda 101 sorgu olur. Ama bununda JOIN FETCH ile önüüne geçebiliyoruz.     
+- **@JoinColumn**:JPA ve Hibernate gibi ORM araçlarını kullanırken veritabanı ilişkilerini(manytomany,onetoone...) yönetmek için kullanılan bir anotasyondur.İki entity arasındaki ilişkinin hangi column üzerinden kurulacağını söyler. **unique** olarak belirtilmişse    bu sütunun değerleri unique'dir. Özellikle @OneToOne ilişkilerde zorunludur veya true yapılmalıdır. **nullable** ise foreign key sütununun veritabanında null değer alıp almayacağını belirler, default değeri true'dur.    
+- **@OnDelete**: silme işlemi sırasında veritabanı seviyesinde temizlik yapmayı sağlar. Ana kayıt silinirse, ona bağlı olanları da veritabanı otomatik olarak silsin emridir.     
+   •  **cascade=CascadeType.REMOVE**, java seviyesinde silmedir. Yazarı sil dediğimizde hibernate önce veritabanına gider, o yazarın tüm kitaplarını SELECT sorgusu ile tek tek bulur. Sonra her kitap için ayrı ayrı DELETE komutu gönderir. En son da yazarı siler. Çok fazla SQL sorgusu çalışır ve performans düşebilir.    
+  •  **@OnDelete(action=OnDeleteAction.CASCADE)**, veritabanı seviyesinde silmedir. Hibernate veritabanına tek  bir komut gönderir; yazarı sil. Veritabanı kendi içinde constraintlere bakarak kitapları kendisi temizler. Çok daha hızlıdır.
 
+- **@JsonIgnore**: Bu alanı JSON çıktısına dahil etme yani serileştirme ve JSON girdisinden bu alanı okumaya çalışma yani deserilialization yapma.
+
+   
   ## JPA
  - JpaRepository extend edildiğinde, Spring bizim için hazır CRUD metotlarını sağlar. Yani kendi save(), findByID(), delete() gibi metotları yazmamıza gerek kalmaz.
 
