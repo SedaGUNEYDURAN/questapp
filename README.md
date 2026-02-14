@@ -44,7 +44,9 @@
 ```      
 
    - **@RequestParam**: Bu anotasyon Controller classındaki metot parametresine konulduğunda Spring'e gelen URL'indeki sorgu dizesini okumasını söyler. Diyelim ki URL şöyle bir şey olsun; /posts?page=2&size=10&userId=5 .Burada URL'deki soru işaretinden sonra gelen kısım sorgu dizesidir -> page=2, size=10. Bu anotasyon, bu sorgu parametrelerinin değerlerini  yakalar. Yakalan  değeri, metot parametresine otomatik olarak atar. Yakalan String değeri , metot parametresinde bulunan türe otomatik olarak dönüştürür.   
-    
+
+<img width="687" height="216" alt="image" src="https://github.com/user-attachments/assets/cc75dafc-0461-49f3-b353-13ff2eb417e2" />
+
      •**@ResponseBody** : @Controller bir String döndürdüğünde, Spring bu String'i bier view adı (JSP, HTML) olarak yorumlar. Ama bu anotasyon eklendiğinde; Spring metotdan dönen nesneyi(genellikle java objesi) alır ve bunu doğrudan HTTP yanıt gövdesine(response body'ye) yazar. Spring Boot, bu işlemi defauşlt olarak JSON formatına dönüştürerek serialization yapar. Kısaca **Java objesini API aracılığı ile dış dünyaya JSON metni olarak sunar.**
 
 -  **@RequestMapping**: Bir Controller classını veya bir Controller metodunu belirli bir URL'e eşlemektedir.    
